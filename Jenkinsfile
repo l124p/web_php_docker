@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'worker' }
 
     environment {
         ECRREPOSITORY = "097084951758.dkr.ecr.us-east-1.amazonaws.com/web"
