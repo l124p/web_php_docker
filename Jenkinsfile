@@ -22,7 +22,7 @@ pipeline {
                 withCredentials([awsEcr(credentialsId: 'aws', region: ECRREGION)]) {
                     sh "aws ecr get-login-password --region ${ECRREGION} | docker login --username AWS --password-stdin ${ECRREPOSITORY}"
                     sh "docker push ${ECRREPOSITORY}:${IMAGETAG}"
-                //}
+                }
             }
         }
 
