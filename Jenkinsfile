@@ -19,7 +19,7 @@ pipeline {
 
         stage('Push to Amazon ECR') {
             steps {
-               // withCredentials([awsEcr(credentialsId: 'aws', region: ECRREGION)]) {
+                withCredentials([awsEcr(credentialsId: 'aws', region: ECRREGION)]) {
                     sh "aws ecr get-login-password --region ${ECRREGION} | docker login --username AWS --password-stdin ${ECRREPOSITORY}"
                     sh "docker push ${ECRREPOSITORY}:${IMAGETAG}"
                 //}
@@ -28,10 +28,10 @@ pipeline {
 
         stage('Deploy to EKS Cluster') {
             steps {
-               // withCredentials(kubeconfigFile(credentialsId: 'aws', variable: 'KUBECONFIG')) {
-                    //sh "kubectl apply -f deployment.yaml --kubeconfig=${KUBECONFIG} -n default"
-                    sh "kubectl apply -f deployment.yaml"
-                //}
+                withCredentials(kubeconfigFile(credentialsId: 'aws', variable: 'KUBECONFIG')) {
+                    sh "kubectl apply -f deployment.yaml --kubeconfig=${KUBECONFIG} -n default"
+                    //sh "kubectl apply -f deployment.yaml"
+                }
             }
         }
     }
