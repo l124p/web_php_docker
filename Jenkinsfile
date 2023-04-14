@@ -25,12 +25,12 @@ pipeline {
             }
         }
 
-        stage('Deploy to EKS Cluster') {
-            steps {
-                withCredentials(kubeconfigFile(credentialsId: 'aws-kubeconfig-credentials', variable: 'KUBECONFIG')) {
-                    sh "kubectl apply -f deployment.yaml --kubeconfig=${KUBECONFIG} -n default"
-                }
-            }
-        }
+        // stage('Deploy to EKS Cluster') {
+        //     steps {
+        //         withCredentials(kubeconfigFile(credentialsId: 'aws-kubeconfig-credentials', variable: 'KUBECONFIG')) {
+        //             sh "kubectl apply -f deployment.yaml --kubeconfig=${KUBECONFIG} -n default"
+        //         }
+        //     }
+        // }
     }
 }
