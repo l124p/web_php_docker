@@ -10,11 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-            steps {
-                mvn 'clean instal'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
