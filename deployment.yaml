@@ -1,0 +1,22 @@
+#------------ APP --------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-web
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: php-web
+  template:
+    metadata:
+      labels:
+        project: php-web # Service will look for those PODS Labels
+    spec:
+      containers:
+        - name: php-web
+          image: 097084951758.dkr.ecr.us-east-1.amazonaws.com/web:latest
+          ports:
+            - containerPort: 80
+            
