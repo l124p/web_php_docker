@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ECRREPOSITORY = "web"
+        ECRREPOSITORY = "097084951758.dkr.ecr.us-east-1.amazonaws.com/web"
         ECRREGION = "us-east-1"
         EKSCLUSTERNAME = "l124-dp-Cluster"
         DOCKERFILEPATH = "./Dockerfile"
