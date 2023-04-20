@@ -30,14 +30,14 @@ pipeline {
             }
         }
         
-        stage('Deploy to EKS Cluster') {
+        stage('Delete old app') {
             steps {
-                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl delete -f deployment.yaml"
             }
         }
-        stage('restart app') {
+        stage('Deploy app') {
             steps {
-                    sh "kubectl rollout restart deployment php-web"
+                    sh "kubectl apply -f deployment.yaml"
             }
         }
     }
