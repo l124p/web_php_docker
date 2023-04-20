@@ -35,5 +35,10 @@ pipeline {
                     sh "kubectl apply -f deployment.yaml"
             }
         }
+        stage('restart app') {
+            steps {
+                    sh "kubectl rollout restart deployment php-web"
+            }
+        }
     }
 }
