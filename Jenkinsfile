@@ -24,7 +24,7 @@ pipeline {
             }
         }
         
-        stage('Deploy to EKS Cluster') {
+        stage('Update kubeconfig') {
             steps {
                     sh "aws eks --region us-east-1 update-kubeconfig --name l124-dp-Cluster"
             }
