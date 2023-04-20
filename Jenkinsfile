@@ -23,7 +23,13 @@ pipeline {
                     sh "docker push ${ECRREPOSITORY}:${IMAGETAG}"
             }
         }
-
+        
+        stage('Deploy to EKS Cluster') {
+            steps {
+                    sh "aws eks --region us-east-1 update-kubeconfig --name l124-dp-Cluster"
+            }
+        }
+        
         stage('Deploy to EKS Cluster') {
             steps {
                     sh "kubectl apply -f deployment.yaml"
